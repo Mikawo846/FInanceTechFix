@@ -7,9 +7,18 @@
   <script src="main.js" defer></script>
 </head>
 <body>
-  <aside class="sidebar">
-    <div class="logo">Финансы</div>
-    <nav>
+  <div class="wrapper">
+    <!-- Верхний блок поиска -->
+    <div class="search-tile">
+      <div class="search-tile-inner">
+        <div class="logo">Финансы</div>
+        <input type="search" class="main-search" placeholder="Поиск по сайту...">
+        <div class="rates-mini" id="ratesMini"></div>
+      </div>
+    </div>
+
+    <!-- Навигация -->
+    <nav class="main-nav">
       <ul>
         <li><a href="#">Главная</a></li>
         <li><a href="#">Инвестиции</a></li>
@@ -22,120 +31,124 @@
         <li><a href="#">Настройки</a></li>
       </ul>
     </nav>
-  </aside>
-  <div class="main-content">
-    <div class="search-bar">
-      <input type="search" id="siteSearch" placeholder="Поиск по сайту...">
-    </div>
-    <div class="rates-bar" id="ratesBar"></div>
+
+    <!-- Карточки -->
     <section class="cards-section">
       <div class="cards">
         <div class="card">
           <div class="card-image">
-            <img src="https://via.placeholder.com/400x220?text=Фото1" alt="Превью статьи">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Налоги 2024">
           </div>
-          <h3>Изменения в налоговом законодательстве с 2024 года</h3>
-          <p>Какие новые налоговые правила вступят в силу и как они повлияют на ваши финансы.</p>
-          <a href="#">Читать далее</a>
+          <div class="card-content">
+            <h3>Изменения в налоговом законодательстве с 2024 года</h3>
+            <p>Какие новые налоговые правила вступят в силу и как они повлияют на ваши финансы.</p>
+          </div>
+          <a href="#" class="card-link"></a>
         </div>
         <div class="card">
           <div class="card-image">
-            <img src="https://via.placeholder.com/400x220?text=Фото2" alt="Превью статьи">
+            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Личный бюджет">
           </div>
-          <h3>Как составить личный бюджет</h3>
-          <p>Пошаговая инструкция по созданию бюджета для достижения финансовых целей.</p>
-          <a href="#">Узнать больше</a>
+          <div class="card-content">
+            <h3>Как составить личный бюджет</h3>
+            <p>Пошаговая инструкция по созданию бюджета для достижения финансовых целей.</p>
+          </div>
+          <a href="#" class="card-link"></a>
         </div>
         <div class="card">
           <div class="card-image">
-            <img src="https://via.placeholder.com/400x220?text=Фото3" alt="Превью статьи">
+            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Криптовалюта 2025">
           </div>
-          <h3>Стоит ли инвестировать в криптовалюту в 2025?</h3>
-          <p>Аналитика, риски и перспективы рынка криптовалют для начинающих и опытных инвесторов.</p>
-          <a href="#">Подробнее</a>
+          <div class="card-content">
+            <h3>Стоит ли инвестировать в криптовалюту в 2025?</h3>
+            <p>Аналитика, риски и перспективы рынка криптовалют для начинающих и опытных инвесторов.</p>
+          </div>
+          <a href="#" class="card-link"></a>
         </div>
         <div class="card">
           <div class="card-image">
-            <img src="https://via.placeholder.com/400x220?text=Фото4" alt="Превью статьи">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=400&q=80" alt="Вклады">
           </div>
-          <h3>Как выбрать выгодный вклад в банке</h3>
-          <p>Сравниваем предложения банков и рассказываем, на что обратить внимание при выборе вклада.</p>
-          <a href="#">Сравнить вклады</a>
+          <div class="card-content">
+            <h3>Как выбрать выгодный вклад в банке</h3>
+            <p>Сравниваем предложения банков и рассказываем, на что обратить внимание при выборе вклада.</p>
+          </div>
+          <a href="#" class="card-link"></a>
         </div>
         <div class="card">
           <div class="card-image">
-            <img src="https://via.placeholder.com/400x220?text=Фото5" alt="Превью статьи">
+            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Грамотность">
           </div>
-          <h3>Финансовая грамотность для всей семьи</h3>
-          <p>Советы по обучению детей и подростков основам обращения с деньгами.</p>
-          <a href="#">Читать статью</a>
+          <div class="card-content">
+            <h3>Финансовая грамотность для всей семьи</h3>
+            <p>Советы по обучению детей и подростков основам обращения с деньгами.</p>
+          </div>
+          <a href="#" class="card-link"></a>
         </div>
         <div class="card">
           <div class="card-image">
-            <img src="https://via.placeholder.com/400x220?text=Фото6" alt="Превью статьи">
+            <img src="https://images.unsplash.com/photo-1460899960812-f6ee1ecaf117?auto=format&fit=crop&w=400&q=80" alt="Кредит">
           </div>
-          <h3>Как рассчитать переплату по кредиту</h3>
-          <p>Формулы, примеры и калькуляторы для расчета полной стоимости кредита.</p>
-          <a href="#">Рассчитать</a>
+          <div class="card-content">
+            <h3>Как рассчитать переплату по кредиту</h3>
+            <p>Формулы, примеры и калькуляторы для расчета полной стоимости кредита.</p>
+          </div>
+          <a href="#" class="card-link"></a>
         </div>
         <div class="card">
           <div class="card-image">
-            <img src="https://via.placeholder.com/400x220?text=Фото7" alt="Превью статьи">
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Банковские карты">
           </div>
-          <h3>Обзор лучших банковских карт 2025</h3>
-          <p>Рейтинг карт с кэшбэком, милями и бесплатным обслуживанием.</p>
-          <a href="#">Смотреть рейтинг</a>
+          <div class="card-content">
+            <h3>Обзор лучших банковских карт 2025</h3>
+            <p>Рейтинг карт с кэшбэком, милями и бесплатным обслуживанием.</p>
+          </div>
+          <a href="#" class="card-link"></a>
         </div>
         <div class="card">
           <div class="card-image">
-            <img src="https://via.placeholder.com/400x220?text=Фото8" alt="Превью статьи">
+            <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a0b16?auto=format&fit=crop&w=400&q=80" alt="Ошибки инвестирования">
           </div>
-          <h3>Топ-5 ошибок при инвестировании</h3>
-          <p>Избегайте распространённых ошибок и инвестируйте с умом.</p>
-          <a href="#">Подробнее</a>
+          <div class="card-content">
+            <h3>Топ-5 ошибок при инвестировании</h3>
+            <p>Избегайте распространённых ошибок и инвестируйте с умом.</p>
+          </div>
+          <a href="#" class="card-link"></a>
         </div>
         <div class="card">
           <div class="card-image">
-            <img src="https://via.placeholder.com/400x220?text=Фото9" alt="Превью статьи">
+            <img src="https://images.unsplash.com/photo-1515168833906-d2a3b82b302c?auto=format&fit=crop&w=400&q=80" alt="Мошенники">
           </div>
-          <h3>Как защитить свои финансы от мошенников</h3>
-          <p>Практические советы по кибербезопасности и защите банковских счетов.</p>
-          <a href="#">Узнать больше</a>
-        </div>
-        <div class="card">
-          <div class="card-image">
-            <img src="https://via.placeholder.com/400x220?text=Фото10" alt="Превью статьи">
+          <div class="card-content">
+            <h3>Как защитить свои финансы от мошенников</h3>
+            <p>Практические советы по кибербезопасности и защите банковских счетов.</p>
           </div>
-          <h3>Пенсионные накопления: как начать?</h3>
-          <p>Пошаговое руководство по формированию пенсии и выбору инструментов.</p>
-          <a href="#">Читать статью</a>
-        </div>
-        <div class="card">
-          <div class="card-image">
-            <img src="https://via.placeholder.com/400x220?text=Фото11" alt="Превью статьи">
-          </div>
-          <h3>Инвестиции в недвижимость: плюсы и минусы</h3>
-          <p>Что учитывать при покупке квартиры или коммерческой недвижимости.</p>
-          <a href="#">Анализировать</a>
-        </div>
-        <div class="card">
-          <div class="card-image">
-            <img src="https://via.placeholder.com/400x220?text=Фото12" alt="Превью статьи">
-          </div>
-          <h3>Как снизить налоги законно</h3>
-          <p>Законные методы налоговой оптимизации для физических лиц и ИП.</p>
-          <a href="#">Подробнее</a>
-        </div>
-        <div class="card">
-          <div class="card-image">
-            <img src="https://via.placeholder.com/400x220?text=Фото13" alt="Превью статьи">
-          </div>
-          <h3>Финансовые новости дня</h3>
-          <p>Будьте в курсе последних событий в мире финансов и экономики.</p>
-          <a href="#">Читать новости</a>
+          <a href="#" class="card-link"></a>
         </div>
       </div>
     </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-logo">Финансы</div>
+        <div class="footer-links">
+          <a href="#">Главная</a>
+          <a href="#">Инвестиции</a>
+          <a href="#">Кредиты</a>
+          <a href="#">Банки</a>
+          <a href="#">Новости</a>
+          <a href="#">Грамотность</a>
+          <a href="#">Валюты</a>
+          <a href="#">Криптовалюты</a>
+          <a href="#">Настройки</a>
+        </div>
+        <div class="footer-contacts">
+          <span>info@finansy.ru</span> | <span>+7 900 000-00-00</span>
+        </div>
+        <div class="footer-copy">&copy; 2025 Финансовый Дзен</div>
+      </div>
+    </footer>
   </div>
 </body>
 </html>
