@@ -7,34 +7,27 @@
   <script src="main.js" defer></script>
 </head>
 <body>
-  <!-- Левый сайдбар (появляется при скролле) -->
-  <nav class="sidebar" id="sidebar">
-    <div class="sidebar-inner">
-      <div class="sidebar-logo">Финансы</div>
-      <ul class="sidebar-menu">
-        <li><a href="#">Главная</a></li>
-        <li><a href="#">Инвестиции</a></li>
-        <li><a href="#">Кредиты</a></li>
-        <li><a href="#">Банки</a></li>
-        <li><a href="#">Новости</a></li>
-        <li><a href="#">Грамотность</a></li>
-        <li><a href="#">Валюты</a></li>
-        <li><a href="#">Криптовалюты</a></li>
-      </ul>
-    </div>
+  <!-- Фиксированный верхний блок поиска -->
+  <div class="search-bar">
+    <input type="search" placeholder="Поиск по сайту...">
+  </div>
+  <!-- Фиксированный левый сайдбар -->
+  <nav class="sidebar">
+    <div class="sidebar-logo">Финансы</div>
+    <ul>
+      <li><a href="#">Главная</a></li>
+      <li><a href="#">Инвестиции</a></li>
+      <li><a href="#">Кредиты</a></li>
+      <li><a href="#">Банки</a></li>
+      <li><a href="#">Новости</a></li>
+      <li><a href="#">Грамотность</a></li>
+      <li><a href="#">Валюты</a></li>
+      <li><a href="#">Криптовалюты</a></li>
+    </ul>
   </nav>
-
+  <!-- Контент -->
   <div class="main-content">
-    <!-- Верхний блок поиска -->
-    <div class="search-tile">
-      <div class="search-tile-inner">
-        <div class="logo">Финансы</div>
-        <input type="search" class="main-search" placeholder="Поиск по сайту...">
-        <div class="rates-mini" id="ratesMini"></div>
-      </div>
-    </div>
-
-    <!-- Карточки -->
+    <div class="rates-bar" id="ratesBar"></div>
     <section class="cards-section">
       <div class="cards">
         <div class="card">
@@ -169,7 +162,6 @@
         </div>
       </div>
     </section>
-
     <!-- Футер -->
     <footer class="footer">
       <div class="footer-inner">
@@ -191,17 +183,5 @@
       </div>
     </footer>
   </div>
-
-  <script>
-    // Появление/скрытие боковой шапки при скролле
-    const sidebar = document.getElementById('sidebar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 80) {
-        sidebar.classList.add('sidebar-visible');
-      } else {
-        sidebar.classList.remove('sidebar-visible');
-      }
-    });
-  </script>
 </body>
 </html>
