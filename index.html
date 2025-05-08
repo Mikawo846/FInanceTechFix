@@ -1,97 +1,306 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Финансовый портал</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Финансовый Дзен</title>
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #f5f5f5;
+      --color-text: #333333;
+      --color-heading: #1a2b4c;
+      --color-menu-bg: #1a2b4c;
+      --color-menu-text: #ffffff;
+      --color-menu-hover1: #d4af37;
+      --color-cta1: #4caf50;
+      --color-cta2: #d4af37;
+      --color-card-border: #e0e0e0;
+      --font-family: 'Inter', 'Roboto', sans-serif;
+    }
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 240px;
+      height: 100vh;
+      background: var(--color-menu-bg);
+      color: var(--color-menu-text);
+      display: flex;
+      flex-direction: column;
+      padding: 32px 20px 20px 20px;
+      z-index: 100;
+    }
+    .sidebar .logo {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 32px;
+      letter-spacing: 1px;
+    }
+    .sidebar nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sidebar nav ul li {
+      margin-bottom: 18px;
+    }
+    .sidebar nav ul li a {
+      color: var(--color-menu-text);
+      text-decoration: none;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 8px;
+      padding: 6px 10px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .sidebar nav ul li a:hover {
+      background: var(--color-menu-hover1);
+      color: #222;
+    }
+    .main-content {
+      margin-left: 240px;
+      width: 100%;
+      min-height: 100vh;
+      background: var(--color-bg);
+      display: flex;
+      flex-direction: column;
+    }
+    .search-bar {
+      width: 100%;
+      background: #fff;
+      padding: 18px 32px 12px 32px;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 2;
+      border-bottom: 1px solid #ececec;
+    }
+    .search-bar input[type="search"] {
+      width: 100%;
+      padding: 12px 18px;
+      border: 1px solid #ccc;
+      border-radius: 14px;
+      font-size: 18px;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .search-bar input[type="search"]:focus {
+      border: 1.5px solid var(--color-cta1);
+    }
+    .ticker-bar {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: #fffbe6;
+      color: #333;
+      padding: 10px 32px;
+      font-size: 17px;
+      border-bottom: 1px solid #e0e0e0;
+      z-index: 10;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .ticker-bar .ticker {
+      display: inline-block;
+      animation: ticker-move 30s linear infinite;
+    }
+    @keyframes ticker-move {
+      0% { transform: translateX(100%);}
+      100% { transform: translateX(-100%);}
+    }
+    .cards-section {
+      padding: 36px 32px 36px 32px;
+      flex: 1;
+    }
+    .cards-title {
+      font-size: 28px;
+      color: var(--color-heading);
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 32px;
+      border: 1px solid var(--color-card-border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      padding: 28px 24px 22px 24px;
+      transition: box-shadow 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      min-height: 180px;
+    }
+    .card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+      transform: translateY(-5px);
+    }
+    .card h3 {
+      margin: 0 0 10px 0;
+      color: var(--color-heading);
+      font-size: 22px;
+      font-weight: 600;
+    }
+    .card p {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+    }
+    .card a {
+      color: var(--color-cta1);
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: auto;
+      align-self: flex-start;
+      transition: color 0.2s;
+    }
+    .card a:hover {
+      color: var(--color-cta2);
+      text-decoration: underline;
+    }
+    @media (max-width: 900px) {
+      .sidebar {
+        width: 60px;
+        padding: 18px 4px 4px 4px;
+      }
+      .sidebar .logo {
+        font-size: 0;
+        margin-bottom: 16px;
+      }
+      .sidebar nav ul li a {
+        font-size: 0;
+        padding: 8px 0;
+        justify-content: center;
+      }
+      .main-content {
+        margin-left: 60px;
+      }
+      .search-bar, .ticker-bar, .cards-section {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+    @media (max-width: 600px) {
+      .cards-section {
+        padding: 16px 4px;
+      }
+      .cards {
+        gap: 14px;
+      }
+      .card {
+        padding: 18px 10px 14px 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="container header-content">
-      <div class="logo">FinNews</div>
-      <nav>
-        <ul class="menu">
-          <li><a href="#home">Главная</a></li>
-          <li><a href="#news">Новости</a></li>
-          <li><a href="#analytics">Аналитика</a></li>
-          <li><a href="#investments">Инвестиции</a></li>
-          <li><a href="#credits">Кредиты</a></li>
-          <li><a href="#taxes">Налоги</a></li>
-        </ul>
-      </nav>
+  <aside class="sidebar">
+    <div class="logo">Финансы</div>
+    <nav>
+      <ul>
+        <li><a href="#">🏠 Главная</a></li>
+        <li><a href="#">📈 Инвестиции</a></li>
+        <li><a href="#">💳 Кредиты</a></li>
+        <li><a href="#">🏦 Банки</a></li>
+        <li><a href="#">📰 Новости</a></li>
+        <li><a href="#">📚 Грамотность</a></li>
+        <li><a href="#">💰 Валюты</a></li>
+        <li><a href="#">⚡ Криптовалюты</a></li>
+        <li><a href="#">⚙️ Настройки</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <div class="main-content">
+    <div class="search-bar">
+      <input type="search" placeholder="Поиск по сайту...">
     </div>
-    <div class="search-bar" aria-hidden="true">
-      <input type="search" placeholder="Поиск..." aria-label="Поиск по сайту" />
-      <div class="search-suggestions"></div>
+    <div class="ticker-bar">
+      <span class="ticker">
+        BTC: $64,000 | ETH: $3,100 | S&P 500: 5,200 | NASDAQ: 16,000 | USD/RUB: 90.20 | EUR/RUB: 98.30 | MOEX: 3,400 | Золото: $2,350 | Нефть Brent: $85 | BTC: $64,000 | ETH: $3,100 | S&P 500: 5,200 | NASDAQ: 16,000 | USD/RUB: 90.20 | EUR/RUB: 98.30 | MOEX: 3,400 | Золото: $2,350 | Нефть Brent: $85
+      </span>
     </div>
-  </header>
-
-  <main class="container">
-    <section id="home" class="banner">
-      <h1>Последние новости финансового мира</h1>
-      <button class="btn cta">Читать новости</button>
-    </section>
-
-    <section id="news" class="news-section">
-      <h2>Последние новости</h2>
-      <div class="cards news-cards">
-        <article class="card">
-          <h3>Рост фондового рынка в 2025 году</h3>
-          <p>Фондовый рынок демонстрирует стабильный рост благодаря новым инвестиционным стратегиям.</p>
-          <time datetime="2025-05-05">5 мая 2025</time>
-          <a href="#">Читать подробнее</a>
-        </article>
-        <!-- Добавьте больше карточек новостей -->
-      </div>
-    </section>
-
-    <section id="analytics" class="analytics-section">
-      <h2>Аналитика</h2>
-      <div class="cards analytics-cards">
-        <article class="card">
-          <h3>Прогноз курса валют</h3>
-          <p>Эксперты прогнозируют укрепление рубля в ближайшие месяцы.</p>
+    <section class="cards-section">
+      <div class="cards-title">Статьи и советы</div>
+      <div class="cards">
+        <div class="card">
+          <h3>Изменения в налоговом законодательстве с 2024 года</h3>
+          <p>Какие новые налоговые правила вступят в силу и как они повлияют на ваши финансы.</p>
+          <a href="#">Читать далее</a>
+        </div>
+        <div class="card">
+          <h3>Как составить личный бюджет</h3>
+          <p>Пошаговая инструкция по созданию бюджета для достижения финансовых целей.</p>
+          <a href="#">Узнать больше</a>
+        </div>
+        <div class="card">
+          <h3>Стоит ли инвестировать в криптовалюту в 2025?</h3>
+          <p>Аналитика, риски и перспективы рынка криптовалют для начинающих и опытных инвесторов.</p>
           <a href="#">Подробнее</a>
-        </article>
-        <!-- Добавьте больше аналитических обзоров -->
+        </div>
+        <div class="card">
+          <h3>Как выбрать выгодный вклад в банке</h3>
+          <p>Сравниваем предложения банков и рассказываем, на что обратить внимание при выборе вклада.</p>
+          <a href="#">Сравнить вклады</a>
+        </div>
+        <div class="card">
+          <h3>Финансовая грамотность для всей семьи</h3>
+          <p>Советы по обучению детей и подростков основам обращения с деньгами.</p>
+          <a href="#">Читать статью</a>
+        </div>
+        <div class="card">
+          <h3>Как рассчитать переплату по кредиту</h3>
+          <p>Формулы, примеры и калькуляторы для расчета полной стоимости кредита.</p>
+          <a href="#">Рассчитать</a>
+        </div>
+        <div class="card">
+          <h3>Обзор лучших банковских карт 2025</h3>
+          <p>Рейтинг карт с кэшбэком, милями и бесплатным обслуживанием.</p>
+          <a href="#">Смотреть рейтинг</a>
+        </div>
+        <div class="card">
+          <h3>Топ-5 ошибок при инвестировании</h3>
+          <p>Избегайте распространённых ошибок и инвестируйте с умом.</p>
+          <a href="#">Подробнее</a>
+        </div>
+        <div class="card">
+          <h3>Как защитить свои финансы от мошенников</h3>
+          <p>Практические советы по кибербезопасности и защите банковских счетов.</p>
+          <a href="#">Узнать больше</a>
+        </div>
+        <div class="card">
+          <h3>Пенсионные накопления: как начать?</h3>
+          <p>Пошаговое руководство по формированию пенсии и выбору инструментов.</p>
+          <a href="#">Читать статью</a>
+        </div>
+        <div class="card">
+          <h3>Инвестиции в недвижимость: плюсы и минусы</h3>
+          <p>Что учитывать при покупке квартиры или коммерческой недвижимости.</p>
+          <a href="#">Анализировать</a>
+        </div>
+        <div class="card">
+          <h3>Как снизить налоги законно</h3>
+          <p>Законные методы налоговой оптимизации для физических лиц и ИП.</p>
+          <a href="#">Подробнее</a>
+        </div>
+        <div class="card">
+          <h3>Финансовые новости дня</h3>
+          <p>Будьте в курсе последних событий в мире финансов и экономики.</p>
+          <a href="#">Читать новости</a>
+        </div>
       </div>
     </section>
-
-    <section id="personal-finance" class="info-blocks">
-      <h2>Личные финансы</h2>
-      <p>Советы по управлению бюджетом и экономии.</p>
-    </section>
-
-    <section id="credits" class="info-blocks">
-      <h2>Кредиты</h2>
-      <p>Обзор выгодных кредитных предложений и условий.</p>
-    </section>
-
-    <section id="taxes" class="info-blocks">
-      <h2>Налоги</h2>
-      <p>Актуальная информация о налоговом законодательстве.</p>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-content">
-      <div class="contacts">
-        <p>Телефон: +7 123 456 7890</p>
-        <p>Email: info@finnews.ru</p>
-      </div>
-      <div class="socials">
-        <a href="#" aria-label="Facebook">FB</a>
-        <a href="#" aria-label="Twitter">TW</a>
-        <a href="#" aria-label="LinkedIn">IN</a>
-      </div>
-      <div class="legal-links">
-        <a href="#">Политика конфиденциальности</a>
-        <a href="#">Пользовательское соглашение</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="scripts.js"></script>
+  </div>
 </body>
 </html>
