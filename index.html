@@ -7,19 +7,11 @@
   <script src="main.js" defer></script>
 </head>
 <body>
-  <div class="wrapper">
-    <!-- Верхний блок поиска -->
-    <div class="search-tile">
-      <div class="search-tile-inner">
-        <div class="logo">Финансы</div>
-        <input type="search" class="main-search" placeholder="Поиск по сайту...">
-        <div class="rates-mini" id="ratesMini"></div>
-      </div>
-    </div>
-
-    <!-- Навигация -->
-    <nav class="main-nav">
-      <ul>
+  <!-- Левый сайдбар (появляется при скролле) -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-inner">
+      <div class="sidebar-logo">Финансы</div>
+      <ul class="sidebar-menu">
         <li><a href="#">Главная</a></li>
         <li><a href="#">Инвестиции</a></li>
         <li><a href="#">Кредиты</a></li>
@@ -28,9 +20,19 @@
         <li><a href="#">Грамотность</a></li>
         <li><a href="#">Валюты</a></li>
         <li><a href="#">Криптовалюты</a></li>
-        <li><a href="#">Настройки</a></li>
       </ul>
-    </nav>
+    </div>
+  </nav>
+
+  <div class="main-content">
+    <!-- Верхний блок поиска -->
+    <div class="search-tile">
+      <div class="search-tile-inner">
+        <div class="logo">Финансы</div>
+        <input type="search" class="main-search" placeholder="Поиск по сайту...">
+        <div class="rates-mini" id="ratesMini"></div>
+      </div>
+    </div>
 
     <!-- Карточки -->
     <section class="cards-section">
@@ -125,6 +127,46 @@
           </div>
           <a href="#" class="card-link"></a>
         </div>
+        <div class="card">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?auto=format&fit=crop&w=400&q=80" alt="Пенсия">
+          </div>
+          <div class="card-content">
+            <h3>Пенсионные накопления: как начать?</h3>
+            <p>Пошаговое руководство по формированию пенсии и выбору инструментов.</p>
+          </div>
+          <a href="#" class="card-link"></a>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=400&q=80" alt="Недвижимость">
+          </div>
+          <div class="card-content">
+            <h3>Инвестиции в недвижимость: плюсы и минусы</h3>
+            <p>Что учитывать при покупке квартиры или коммерческой недвижимости.</p>
+          </div>
+          <a href="#" class="card-link"></a>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Налоги законно">
+          </div>
+          <div class="card-content">
+            <h3>Как снизить налоги законно</h3>
+            <p>Законные методы налоговой оптимизации для физических лиц и ИП.</p>
+          </div>
+          <a href="#" class="card-link"></a>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Новости">
+          </div>
+          <div class="card-content">
+            <h3>Финансовые новости дня</h3>
+            <p>Будьте в курсе последних событий в мире финансов и экономики.</p>
+          </div>
+          <a href="#" class="card-link"></a>
+        </div>
       </div>
     </section>
 
@@ -141,7 +183,6 @@
           <a href="#">Грамотность</a>
           <a href="#">Валюты</a>
           <a href="#">Криптовалюты</a>
-          <a href="#">Настройки</a>
         </div>
         <div class="footer-contacts">
           <span>info@finansy.ru</span> | <span>+7 900 000-00-00</span>
@@ -150,5 +191,17 @@
       </div>
     </footer>
   </div>
+
+  <script>
+    // Появление/скрытие боковой шапки при скролле
+    const sidebar = document.getElementById('sidebar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        sidebar.classList.add('sidebar-visible');
+      } else {
+        sidebar.classList.remove('sidebar-visible');
+      }
+    });
+  </script>
 </body>
 </html>
