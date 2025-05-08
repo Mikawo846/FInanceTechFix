@@ -1,5 +1,3 @@
-// --- Получение и отображение актуальных курсов ---
-
 const ratesMini = document.getElementById('ratesMini');
 
 async function fetchCryptoRates() {
@@ -10,7 +8,6 @@ async function fetchCryptoRates() {
 }
 
 async function fetchStockRates() {
-  // Для примера - статичные данные
   return 'S&P 500: 5200 | NASDAQ: 16000 | MOEX: 3400 | Золото: $2350';
 }
 
