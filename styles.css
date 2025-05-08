@@ -102,27 +102,18 @@ body {
   border-color: #d4af37;
 }
 
-/* Ticker */
-.ticker-bar {
-  position: sticky;
-  top: 0;
+.rates-bar {
   width: 100%;
-  background: var(--color-ticker-bg);
-  color: var(--color-ticker-text);
-  border-bottom: 1px solid #f3e9c7;
+  background: #fffbe6;
+  color: #222;
   font-size: 16px;
-  padding: 10px 16px;
-  z-index: 10;
-  white-space: nowrap;
-  overflow: hidden;
-}
-.ticker-bar .ticker {
-  display: inline-block;
-  animation: ticker-move 32s linear infinite;
-}
-@keyframes ticker-move {
-  0% { transform: translateX(100%);}
-  100% { transform: translateX(-100%);}
+  padding: 10px 24px;
+  border-top: 1px solid #f3e9c7;
+  box-sizing: border-box;
+  text-align: left;
+  min-height: 38px;
+  margin-top: 32px;
+  /* Не фиксируем, чтобы не мешала скроллу */
 }
 
 /* Cards */
