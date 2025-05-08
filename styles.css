@@ -5,7 +5,7 @@ body {
   color: #1a2257;
 }
 
-/* --- Фиксированный верхний блок поиска --- */
+/* --- Фиксированный верхний блок поиска с лого и курсами --- */
 .search-bar {
   position: fixed;
   top: 0;
@@ -14,16 +14,24 @@ body {
   background: #fff;
   box-shadow: 0 4px 16px rgba(0,0,0,0.06);
   z-index: 1000;
-  padding: 24px 32px 16px 260px; /* слева отступ под сайдбар */
+  padding: 20px 32px 14px 260px; /* отступ слева под сайдбар */
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
 }
-
+.search-logo {
+  width: 36px;
+  height: 36px;
+  margin-right: 18px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .search-bar input[type="search"] {
   width: 100%;
   max-width: 480px;
-  padding: 14px 20px;
+  padding: 12px 18px;
   border: 1.5px solid #e5e7eb;
   border-radius: 16px;
   font-size: 18px;
@@ -31,8 +39,6 @@ body {
   background: #fff;
   outline: none;
 }
-
-/* --- Курсы справа от поиска --- */
 #ratesBar {
   font-size: 16px;
   color: #1a2257;
@@ -58,62 +64,56 @@ body {
   box-shadow: 2px 0 16px rgba(0,0,0,0.06);
   padding: 32px 0 0 0;
   z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
 .sidebar-logo {
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 32px;
   text-align: center;
 }
-
 .sidebar ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  width: 100%;
 }
-
 .sidebar li {
   margin-bottom: 12px;
+  width: 100%;
 }
-
 .sidebar a {
   display: block;
   padding: 12px 32px;
   color: #1a2257;
   text-decoration: none;
-  border-radius: 12px;
-  transition: background 0.14s;
+  border-radius: 10px;
+  transition: background 0.17s, color 0.17s, font-weight 0.17s;
+  font-weight: 500;
+  width: 90%;
+  margin: 0 auto;
 }
-
-.sidebar a:hover {
+.sidebar a:hover,
+.sidebar a:focus {
   background: #f3f4f6;
+  color: #ff8000;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  width: 85%;
 }
 
 /* --- Контент с учётом сайдбара и поиска --- */
 .main-content {
   margin-left: 240px;
-  padding-top: 80px; /* высота search-bar + отступ */
-}
-
-/* --- Курсы под поиском (если нужно, можно скрыть) --- */
-.rates-bar {
-  width: 100%;
-  background: #fff;
-  color: #1a2257;
-  font-size: 16px;
-  padding: 12px 0 12px 0;
-  text-align: center;
-  margin-bottom: 24px;
-  box-shadow: none;
-  border: none;
+  padding-top: 80px;
 }
 
 /* --- Карточки --- */
 .cards-section {
   padding: 0 24px 40px 24px;
 }
-
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -121,7 +121,6 @@ body {
   max-width: 1200px;
   margin: 0 auto;
 }
-
 .card {
   background: #fff;
   border-radius: 18px;
@@ -134,42 +133,35 @@ body {
   position: relative;
   min-height: 260px;
 }
-
 .card:hover,
 .card:focus-within {
   box-shadow: 0 8px 20px rgba(0,0,0,0.10);
   border-color: #d4defa;
 }
-
 .card-image {
   width: 100%;
   aspect-ratio: 16/9;
   background: #f3f4f6;
   overflow: hidden;
 }
-
 .card-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-
 .card-content {
   padding: 18px 22px 0 22px;
 }
-
 .card h3 {
   margin: 0 0 10px 0;
   font-size: 19px;
   font-weight: 600;
 }
-
 .card p {
   margin: 0;
   font-size: 15px;
 }
-
 .card-link {
   position: absolute;
   inset: 0;
@@ -188,24 +180,20 @@ body {
   box-shadow: 0 -2px 12px rgba(0,0,0,0.03);
   padding: 32px 0 24px 0;
 }
-
 .footer-inner {
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
 }
-
 .footer-logo {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 12px;
   color: #1a2257;
 }
-
 .footer-links {
   margin-bottom: 12px;
 }
-
 .footer-links a {
   color: #1a2257;
   margin: 0 8px;
@@ -214,60 +202,116 @@ body {
   opacity: 0.85;
   transition: opacity 0.15s;
 }
-
 .footer-links a:hover {
   opacity: 1;
+  color: #ff8000;
 }
-
 .footer-contacts {
   font-size: 14px;
   color: #1a2257;
   margin-bottom: 10px;
 }
-
 .footer-copy {
   font-size: 13px;
   color: #9ea6ba;
   margin-top: 8px;
 }
 
-/* --- Адаптивность --- */
-@media (max-width: 1100px) {
-  .cards {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
+/* --- Мобильная версия: две карточки в ряд, меню-стрелка --- */
+@media (max-width: 900px) {
   .main-content {
     margin-left: 0;
+    padding-top: 72px;
   }
   .sidebar {
     display: none;
   }
-  .search-bar {
-    padding-left: 0;
-  }
-}
-
-@media (max-width: 700px) {
   .cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
-  }
-  .cards-section {
-    padding: 0 4px 24px 4px;
+    padding: 0 8px;
   }
   .search-bar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
     padding: 12px 8px 8px 8px;
+    gap: 12px;
   }
   #ratesBar {
     margin-left: 0;
     margin-top: 8px;
     text-align: left;
   }
-  .main-content {
-    padding-top: 70px;
+  /* Мобильное меню-стрелка */
+  .mobile-menu-toggle {
+    position: fixed;
+    left: 12px;
+    top: 18px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2001;
+    cursor: pointer;
+    border: 1.5px solid #e5e7eb;
+    transition: box-shadow 0.2s;
+  }
+  .mobile-menu-toggle:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.14);
+  }
+  .mobile-sidebar {
+    position: fixed;
+    top: 0;
+    left: -270px;
+    width: 240px;
+    height: 100vh;
+    background: #fff;
+    border-radius: 0 24px 24px 0;
+    box-shadow: 2px 0 16px rgba(0,0,0,0.10);
+    z-index: 2000;
+    transition: left 0.35s cubic-bezier(.4,0,.2,1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 32px;
+  }
+  .mobile-sidebar.open {
+    left: 0;
+  }
+  .mobile-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  .mobile-sidebar li {
+    margin-bottom: 12px;
+    width: 100%;
+  }
+  .mobile-sidebar a {
+    display: block;
+    padding: 12px 32px;
+    color: #1a2257;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background 0.17s, color 0.17s, font-weight 0.17s;
+    font-weight: 500;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .mobile-sidebar a:hover,
+  .mobile-sidebar a:focus {
+    background: #f3f4f6;
+    color: #ff8000;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    width: 85%;
+  }
+}
+@media (max-width: 600px) {
+  .cards {
+    grid-template-columns: 1fr;
   }
 }
