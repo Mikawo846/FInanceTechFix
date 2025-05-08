@@ -1,12 +1,8 @@
 // --- Получение и отображение актуальных курсов ---
 
-// Используем бесплатные публичные API (CoinGecko для крипто и фондовых, ExchangeRates для валют)
-// Для продакшена используйте свои ключи и лимиты API!
-
 const ratesBar = document.getElementById('ratesBar');
 
 async function fetchCryptoRates() {
-  // CoinGecko API
   const url = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,toncoin,solana&vs_currencies=usd';
   const res = await fetch(url);
   const data = await res.json();
@@ -14,14 +10,11 @@ async function fetchCryptoRates() {
 }
 
 async function fetchStockRates() {
-  // Для примера - статичные данные, для реального проекта используйте биржевой API
-  // Например, https://financialmodelingprep.com/ или любой другой
-  // Здесь просто пример:
+  // Для примера - статичные данные
   return 'Фондовые индексы: S&P 500: 5200 | NASDAQ: 16000 | MOEX: 3400 | Золото: $2350';
 }
 
 async function fetchCurrencyRates() {
-  // Exchangerate.host - бесплатный API
   const url = 'https://api.exchangerate.host/latest?base=USD&symbols=RUB,EUR,CNY,GBP';
   const res = await fetch(url);
   const data = await res.json();
@@ -45,6 +38,3 @@ async function updateRatesBar() {
 // Первый запуск и автосмена каждые 15 секунд
 updateRatesBar();
 setInterval(updateRatesBar, 15000);
-
-// --- Поиск по сайту (пример, если нужен только визуал) ---
-// Если хотите реализовать реальный поиск - потребуется JS-код для фильтрации контента по запросу пользователя.
