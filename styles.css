@@ -5,6 +5,7 @@ body {
   color: #222;
 }
 
+/* Шапка */
 .site-header {
   position: sticky;
   top: 0;
@@ -32,11 +33,11 @@ body {
   padding: 18px 0 0 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  text-align: center;
 }
 .categories::-webkit-scrollbar { display: none; }
+
 .cat {
   padding: 9px 18px;
   border: none;
@@ -47,33 +48,31 @@ body {
   cursor: pointer;
   color: #222;
   font-weight: 500;
-  transition: none;
+  transition: background 0.15s, color 0.15s;
   outline: none;
 }
+.cat.active,
 .cat:hover,
-.cat:focus,
-.cat.active {
+.cat:focus {
   background: #fff7ed;
   color: #ff9100;
-  /* Оранжевый: #ff9100, светлый фон: #fff7ed */
 }
 
 /* Поиск и курсы */
 .header-bottom {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 24px;
   padding: 18px 0 18px 0;
   width: 100%;
   box-sizing: border-box;
+  justify-content: center;
 }
 .header-center {
   flex: 1 1 0;
   display: flex;
   justify-content: center;
 }
-
 .search {
   width: 100%;
   max-width: 520px;
@@ -131,7 +130,6 @@ main {
   margin: 0 auto;
   padding: 32px 8px 32px 8px;
 }
-
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -140,6 +138,7 @@ main {
   justify-items: center;
 }
 
+/* --- Медиазапросы --- */
 @media (max-width: 900px) {
   .site-header {
     max-width: 100vw;
@@ -155,19 +154,31 @@ main {
   }
 }
 
+/* --- ВАЖНО: Мобильная версия, категории без горизонтального скролла --- */
 @media (max-width: 600px) {
   .site-header {
     padding: 0 2vw;
     border-radius: 0 0 18px 18px;
   }
   .categories {
-    gap: 6px;
-    padding-top: 12px;
-    font-size: 13px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    overflow-x: visible;
   }
   .cat {
+    flex: 1 1 40%;
+    min-width: 48%;
+    max-width: 100%;
+    text-align: center;
     font-size: 13px;
-    padding: 6px 10px;
+    padding: 6px 0;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .header-bottom {
     flex-direction: column;
@@ -200,6 +211,7 @@ main {
   }
 }
 
+/* --- Остальной ваш CSS без изменений --- */
 .card {
   background: #fff;
   border-radius: 16px;
