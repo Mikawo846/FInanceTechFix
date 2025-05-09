@@ -3,6 +3,12 @@ body {
   font-family: 'Segoe UI', Arial, sans-serif;
   background: #fff;
   color: #222;
+  /* Убираем горизонтальный скролл на всей странице */
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 /* Шапка */
@@ -25,16 +31,16 @@ body {
   transition: background 0.3s;
 }
 
-/* Категории */
+/* Категории - десктоп */
 .categories {
   display: flex;
   gap: 10px;
-  overflow-x: auto;
-  padding: 18px 0 0 0;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
+  padding: 18px 0 0 0;
+  width: 100%;
+  box-sizing: border-box;
+  /* УБРАНО overflow-x: auto и скроллбары */
 }
 .categories::-webkit-scrollbar { display: none; }
 
@@ -44,12 +50,12 @@ body {
   background: none;
   border-radius: 12px;
   font-size: 15px;
-  white-space: nowrap;
   cursor: pointer;
   color: #222;
   font-weight: 500;
   transition: background 0.15s, color 0.15s;
   outline: none;
+  white-space: nowrap;
 }
 .cat.active,
 .cat:hover,
@@ -154,35 +160,32 @@ main {
   }
 }
 
-/* --- ВАЖНО: Мобильная версия, категории без горизонтального скролла --- */
+/* --- Мобильная версия: категории без горизонтального скролла --- */
 @media (max-width: 600px) {
   .site-header {
     padding: 0 2vw;
     border-radius: 0 0 18px 18px;
   }
   .categories {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-  padding: 18px 0 0 0;
-  width: 100%;
-  box-sizing: border-box;
-}
-  .categories::-webkit-scrollbar { display: none; }
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    width: 100%;
+    overflow-x: hidden !important; /* Принудительно убираем скролл */
+  }
   .cat {
-  padding: 9px 18px;
-  border: none;
-  background: none;
-  border-radius: 12px;
-  font-size: 15px;
-  cursor: pointer;
-  color: #222;
-  font-weight: 500;
-  transition: background 0.15s, color 0.15s;
-  outline: none;
-  /* УБРАНО: white-space: nowrap; */
-}
+    flex: 1 1 40%;
+    min-width: 48%;
+    max-width: 100%;
+    text-align: center;
+    font-size: 13px;
+    padding: 6px 0;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   .header-bottom {
     flex-direction: column;
     gap: 12px;
