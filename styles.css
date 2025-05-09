@@ -161,14 +161,16 @@ main {
     border-radius: 0 0 18px 18px;
   }
   .categories {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    justify-content: center;
-    align-items: center;
-    padding-top: 10px;
-    overflow-x: visible;
-  }
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 18px 0 0 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  justify-content: center; /* <-- исправлено */
+  align-items: center;
+}
+.categories::-webkit-scrollbar { display: none; }
   .cat {
     flex: 1 1 40%;
     min-width: 48%;
