@@ -308,68 +308,61 @@ main {
   font-size: 12px;
   color: #bbb;
 }
-/* --- Shorts (шортсы, рилзы, reels) --- */
-.shorts-section {
-  margin: 48px 0 32px 0;
-  width: 100%;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.shorts-title {
-  font-size: 20px;
-  font-weight: 600;
-  margin: 0 0 16px 16px;
-}
-
-.shorts-wrapper {
+.shorts-rail {
+  width: 100vw;
+  max-width: 100vw;
+  margin: 0 calc(-50vw + 50%);
   position: relative;
   display: flex;
   align-items: center;
-  width: 100%;
+  justify-content: center;
+  padding: 32px 0 24px 0;
+  background: transparent;
+  box-sizing: border-box;
 }
 
 .shorts-row {
   display: flex;
-  gap: 18px;
+  gap: 24px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding: 10px 0 10px 0;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 64px;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  width: 100%;
+  scroll-snap-type: x mandatory;
 }
 .shorts-row::-webkit-scrollbar { display: none; }
 
 .shorts-card {
-  flex: 0 0 180px;
+  flex: 0 0 210px;
   background: #fff;
-  border-radius: 20px;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.10);
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 260px;
-  max-height: 340px;
-  position: relative;
+  min-height: 320px;
+  max-height: 400px;
   cursor: pointer;
+  scroll-snap-align: start;
+  position: relative;
   transition: box-shadow 0.18s;
 }
 .shorts-card:hover {
-  box-shadow: 0 6px 24px rgba(220,38,38,0.10);
+  box-shadow: 0 6px 24px rgba(220,38,38,0.12);
 }
 .shorts-card img {
   width: 100%;
-  height: 240px;
+  height: 280px;
   object-fit: cover;
   display: block;
-  border-bottom: 1px solid #f3f3f3;
 }
 .shorts-caption {
-  padding: 12px 10px 10px 10px;
-  font-size: 15px;
+  padding: 14px 10px 12px 10px;
+  font-size: 16px;
   text-align: center;
   color: #222;
   font-weight: 500;
@@ -377,84 +370,98 @@ main {
   width: 100%;
 }
 
-/* Стрелки для веба */
 .shorts-arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: absolute;
-  z-index: 2;
   top: 50%;
   transform: translateY(-50%);
-  width: 38px;
-  height: 38px;
+  width: 48px;
+  height: 48px;
   border: none;
   border-radius: 50%;
-  background: rgba(255,255,255,0.85);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  font-size: 22px;
+  background: rgba(255,255,255,0.96);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  font-size: 32px;
   color: #ff9100;
   cursor: pointer;
+  z-index: 2;
+  opacity: 0.92;
   transition: background 0.14s;
-  opacity: 0.85;
 }
-.shorts-arrow.left  { left: -18px; }
-.shorts-arrow.right { right: -18px; }
+.shorts-arrow.left  { left: 0; }
+.shorts-arrow.right { right: 0; }
 .shorts-arrow:disabled { opacity: 0.3; pointer-events: none; }
 
-/* Модальное окно для полноэкранных шортсов */
+/* Модалка Shorts */
 .shorts-modal {
   display: none;
   position: fixed;
   z-index: 9999;
   inset: 0;
-  background: rgba(0,0,0,0.98);
   justify-content: center;
   align-items: center;
-  transition: opacity 0.2s;
 }
 .shorts-modal.active {
   display: flex;
 }
+.shorts-modal-bg {
+  position: absolute;
+  inset: 0;
+  background: rgba(30,30,30,0.7);
+  backdrop-filter: blur(16px);
+  z-index: 1;
+}
 .shorts-modal-content {
-  width: 100vw;
-  height: 100vh;
+  position: relative;
+  z-index: 2;
+  width: 420px;
+  max-width: 98vw;
+  height: 80vh;
+  max-height: 660px;
+  margin: auto;
   overflow-y: auto;
-  scroll-snap-type: y mandatory;
+  background: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  scroll-snap-type: y mandatory;
+  border-radius: 28px;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.20);
 }
 .shorts-modal-slide {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 80vh;
+  max-height: 660px;
+  background: #000;
+  border-radius: 28px;
   display: flex;
   flex-direction: column;
-  scroll-snap-align: start;
   align-items: center;
-  justify-content: center;
+  scroll-snap-align: start;
+  justify-content: flex-end;
   position: relative;
+  margin-bottom: 16px;
 }
 .shorts-modal-slide img {
-  width: 100vw;
-  height: 80vh;
+  width: 100%;
+  height: 70vh;
+  max-height: 540px;
   object-fit: cover;
-  border-radius: 0 0 24px 24px;
+  border-radius: 28px 28px 0 0;
   background: #000;
 }
 .shorts-modal-slide .shorts-caption {
   color: #fff;
-  background: rgba(0,0,0,0.6);
-  font-size: 20px;
+  background: rgba(0,0,0,0.7);
+  font-size: 18px;
   border-radius: 0 0 20px 20px;
-  padding: 18px 12px 18px 12px;
-  width: 100vw;
+  padding: 16px 12px 16px 12px;
+  width: 100%;
   text-align: center;
-  position: absolute;
+  position: relative;
   bottom: 0;
   left: 0;
 }
+
 .shorts-modal-close {
   position: absolute;
   top: 18px;
@@ -470,33 +477,77 @@ main {
 }
 .shorts-modal-close:hover { opacity: 1; }
 
-/* Мобильная версия: стрелки скрыть, скролл пальцем */
-@media (max-width: 700px) {
-  .shorts-arrow { display: none; }
+@media (max-width: 900px) {
+  .shorts-rail {
+    padding: 18px 0 14px 0;
+  }
   .shorts-row {
-    gap: 10px;
-    padding: 8px 0 8px 0;
+    gap: 14px;
+    padding: 0 36px;
   }
   .shorts-card {
-    flex: 0 0 54vw;
+    flex: 0 0 42vw;
     min-width: 140px;
-    max-width: 70vw;
-    height: 180px;
+    max-width: 60vw;
+    height: 220px;
     min-height: 180px;
-    max-height: 240px;
+    max-height: 260px;
   }
   .shorts-card img {
     height: 120px;
   }
   .shorts-caption {
-    font-size: 13px;
+    font-size: 14px;
     padding: 8px 6px 8px 6px;
   }
+  .shorts-modal-content {
+    width: 98vw;
+    height: 80vh;
+    max-width: 98vw;
+    max-height: 80vh;
+    border-radius: 18px;
+  }
+  .shorts-modal-slide {
+    border-radius: 18px;
+    margin-bottom: 10px;
+  }
   .shorts-modal-slide img {
+    border-radius: 18px 18px 0 0;
     height: 60vh;
   }
-  .shorts-modal-slide .shorts-caption {
-    font-size: 16px;
-    padding: 12px 8px 12px 8px;
+}
+
+@media (max-width: 700px) {
+  .shorts-arrow { display: none; }
+  .shorts-row {
+    gap: 10px;
+    padding: 0 12px;
+  }
+  .shorts-card {
+    flex: 0 0 72vw;
+    min-width: 120px;
+    max-width: 90vw;
+    height: 180px;
+    min-height: 120px;
+    max-height: 240px;
+  }
+  .shorts-card img {
+    height: 100px;
+  }
+  .shorts-modal-content {
+    width: 100vw;
+    max-width: 100vw;
+    height: 90vh;
+    max-height: 90vh;
+    border-radius: 0;
+  }
+  .shorts-modal-slide {
+    border-radius: 0;
+    margin-bottom: 6px;
+  }
+  .shorts-modal-slide img {
+    border-radius: 0;
+    height: 50vh;
   }
 }
+
