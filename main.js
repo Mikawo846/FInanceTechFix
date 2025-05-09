@@ -93,3 +93,42 @@ setInterval(() => {
   currentView = (currentView + 1) % 3;
   renderRates();
 }, 5000);
+
+const header = document.querySelector('.site-header');
+let lastScrollY = window.scrollY;
+let ticking = false;
+let lastAction = 'show'; // 'show' или 'hide'
+const threshold = 50; // порог "резкости" скролла в пикселях
+
+function onScroll() {
+    const currentScrollY = window.scrollY;
+    const delta = currentScrollY - lastScrollY;
+
+    // Скролл вниз
+    if (delta > threshold && lastAction !== 'hide') {
+        header.style.transform = `translateY(-${header.offsetHeight}px)`;
+        header.style.transition = 'transform 0.3s cubic-bezier(0.4,0,0.2,1)';
+        lastAction = 'hide';
+    }
+    // Скролл вверх
+    else if (delta < -threshold && lastAction !== 'show') {
+        header.style.transform = 'translateY(0)';
+        header.style.transition = 'transform 0.3s cubic-bezier(0.4,0,0.2,1)';
+        lastAction = 'show';
+    }
+    // Медленный скролл - шапка "едет" за скроллом (не исчезает резко)
+    else if (Math.abs(delta) <= threshold) {
+        // Позволяем шапке оставаться на месте, ничего не делаем
+    }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        window.requestAnimationFrame(onScroll);
+        ticking = true;
+    }
+});
+
