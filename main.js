@@ -95,25 +95,6 @@ setInterval(() => {
 }, 5000);
 
 // --- Shorts (шортсы, рилзы, reels) ---
-// Данные для шортсов
-const shortsData = [
-  {
-    img: "https://images.unsplash.com/photo-1465101178521-c1a9136a0b16?auto=format&fit=crop&w=400&q=80",
-    caption: "Финансовый лайфхак"
-  },
-  {
-    img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80",
-    caption: "Быстрый совет"
-  },
-  {
-    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
-    caption: "Инвестируй с умом"
-  },
-  {
-    img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80",
-    caption: "Секреты бюджета"
-  }
-];
 // Прокрутка стрелками на десктопе
 const shortsRow = document.getElementById('shortsRow');
 const leftArrow = document.querySelector('.shorts-arrow.left');
@@ -127,10 +108,10 @@ function updateShortsArrows() {
 
 if (shortsRow && leftArrow && rightArrow) {
   leftArrow.addEventListener('click', () => {
-    shortsRow.scrollBy({ left: -220, behavior: 'smooth' });
+    shortsRow.scrollBy({ left: -shortsRow.clientWidth * 0.7, behavior: 'smooth' });
   });
   rightArrow.addEventListener('click', () => {
-    shortsRow.scrollBy({ left: 220, behavior: 'smooth' });
+    shortsRow.scrollBy({ left: shortsRow.clientWidth * 0.7, behavior: 'smooth' });
   });
   shortsRow.addEventListener('scroll', updateShortsArrows);
   window.addEventListener('resize', updateShortsArrows);
@@ -141,6 +122,11 @@ if (shortsRow && leftArrow && rightArrow) {
 const shortsModal = document.getElementById('shortsModal');
 const shortsModalContent = document.getElementById('shortsModalContent');
 const shortsModalClose = document.getElementById('shortsModalClose');
+
+const shortsData = Array.from(document.querySelectorAll('.shorts-card')).map(card => ({
+  img: card.querySelector('img').src,
+  caption: card.querySelector('.shorts-caption').textContent
+}));
 
 shortsRow.addEventListener('click', function(e) {
   const card = e.target.closest('.shorts-card');
@@ -166,19 +152,38 @@ function openShortsModal(startIndex) {
     const slide = document.getElementById(`shortsSlide${startIndex}`);
     if (slide) slide.scrollIntoView({behavior: "instant"});
   }, 100);
-
-  // Запускаем Fullscreen API (по желанию, только для мобильных)
-  // if (shortsModal.requestFullscreen) shortsModal.requestFullscreen();
 }
 
 function closeShortsModal() {
   shortsModal.classList.remove('active');
   document.body.style.overflow = '';
-  if (document.fullscreenElement) document.exitFullscreen();
 }
 
 // ESC закрывает модалку
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeShortsModal();
+});
+
+// Scroll-snap: перелистывание строго по одному свайпу
+let lastTouchY = null;
+shortsModalContent?.addEventListener('touchstart', function(e) {
+  if (e.touches.length === 1) lastTouchY = e.touches[0].clientY;
+});
+shortsModalContent?.addEventListener('touchend', function(e) {
+  if (lastTouchY === null) return;
+  const slides = Array.from(shortsModalContent.querySelectorAll('.shorts-modal-slide'));
+  const current = slides.findIndex(slide => {
+    const rect = slide.getBoundingClientRect();
+    return rect.top >= 0 && rect.top < window.innerHeight / 2;
+  });
+  if (e.changedTouches.length === 1) {
+    const deltaY = e.changedTouches[0].clientY - lastTouchY;
+    if (deltaY < -40 && current < slides.length - 1) {
+      slides[current + 1].scrollIntoView({behavior: "smooth"});
+    } else if (deltaY > 40 && current > 0) {
+      slides[current - 1].scrollIntoView({behavior: "smooth"});
+    }
+  }
+  lastTouchY = null;
 });
 
