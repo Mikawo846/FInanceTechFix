@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <title>Финансы</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="site-header">
     <nav class="categories" id="categories">
-      <button class="cat active">Главная</button>
+      <button class="cat">Главная</button>
       <button class="cat">Инвестиции</button>
       <button class="cat">Кредиты</button>
       <button class="cat">Банки</button>
@@ -19,7 +19,9 @@
       <button class="cat">Криптовалюты</button>
     </nav>
     <div class="header-bottom">
-      <input type="search" id="search" class="search" placeholder="Поиск по сайту...">
+      <div class="header-center">
+        <input type="search" id="search" class="search" placeholder="Поиск по сайту...">
+      </div>
       <div class="rates-bar">
         <span class="rates-view active" id="fiatView"></span>
         <span class="rates-view" id="cryptoView"></span>
@@ -31,7 +33,6 @@
   <main>
     <div id="error" class="error" style="display:none"></div>
     <section class="cards" id="cards">
-      <!-- Карточки статей в HTML -->
       <div class="card">
         <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Изменения в налоговом законодательстве с 2024 года" class="card-img">
         <div class="card-body">
