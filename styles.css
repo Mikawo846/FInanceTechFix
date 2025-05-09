@@ -5,7 +5,6 @@ body {
   color: #222;
 }
 
-/* Шапка */
 .site-header {
   position: sticky;
   top: 0;
@@ -25,6 +24,7 @@ body {
   transition: background 0.3s;
 }
 
+/* Категории */
 .categories {
   display: flex;
   gap: 10px;
@@ -32,7 +32,9 @@ body {
   padding: 18px 0 0 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 .categories::-webkit-scrollbar { display: none; }
 .cat {
@@ -43,26 +45,37 @@ body {
   font-size: 15px;
   white-space: nowrap;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s;
+  color: #222;
+  font-weight: 500;
+  transition: none;
+  outline: none;
 }
-.cat.active,
-.cat:hover {
-  background: #fef2f2;
-  color: #dc2626;
-  font-weight: 600;
+.cat:hover,
+.cat:focus,
+.cat.active {
+  background: #fff7ed;
+  color: #ff9100;
+  /* Оранжевый: #ff9100, светлый фон: #fff7ed */
 }
 
+/* Поиск и курсы */
 .header-bottom {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 24px;
   padding: 18px 0 18px 0;
-  justify-content: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
+.header-center {
+  flex: 1 1 0;
+  display: flex;
+  justify-content: center;
 }
 
 .search {
-  flex: 1 1 0;
-  min-width: 180px;
+  width: 100%;
   max-width: 520px;
   padding: 13px 20px;
   border: 1px solid #eee;
@@ -71,29 +84,31 @@ body {
   background: rgba(255,255,255,0.85);
   transition: border 0.2s;
   outline: none;
+  box-sizing: border-box;
 }
 .search:focus {
   border-color: #f87171;
 }
 
+/* КУРСЫ БЕЗ ФОНА */
 .rates-bar {
   min-width: 220px;
   max-width: 340px;
   width: 32vw;
-  height: 44px;
+  height: auto;
   position: relative;
   display: flex;
   align-items: center;
-  background: rgba(255,255,255,0.55);
-  border-radius: 14px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
   font-size: 16px;
   font-weight: 500;
   color: #444;
-  padding-left: 18px;
-  overflow: hidden;
+  padding-left: 0;
+  justify-content: flex-end;
+  overflow: visible;
 }
-
 .rates-view {
   position: absolute;
   left: 0; right: 0; top: 0; bottom: 0;
@@ -103,10 +118,11 @@ body {
   align-items: center;
   height: 100%;
   padding-left: 0;
+  background: none;
 }
 .rates-view.active {
   opacity: 1;
-  position: absolute;
+  position: static;
 }
 
 /* Основной контент */
@@ -121,6 +137,7 @@ main {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 24px;
   margin: 32px 0 0 0;
+  justify-items: center;
 }
 
 @media (max-width: 900px) {
@@ -146,6 +163,7 @@ main {
   .categories {
     gap: 6px;
     padding-top: 12px;
+    font-size: 13px;
   }
   .cat {
     font-size: 13px;
@@ -156,6 +174,9 @@ main {
     gap: 12px;
     align-items: stretch;
     padding: 12px 0 12px 0;
+  }
+  .header-center {
+    width: 100%;
   }
   .search {
     font-size: 14px;
@@ -169,8 +190,9 @@ main {
     width: 100%;
     max-width: 100%;
     margin-top: 2px;
-    padding-left: 10px;
-    height: 36px;
+    padding-left: 0;
+    height: auto;
+    justify-content: flex-end;
   }
   .cards {
     grid-template-columns: 1fr 1fr;
@@ -189,6 +211,8 @@ main {
   display: flex;
   flex-direction: column;
   min-height: 320px;
+  width: 100%;
+  max-width: 400px;
 }
 .card:hover {
   box-shadow: 0 6px 20px rgba(220,38,38,0.08);
