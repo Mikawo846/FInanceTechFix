@@ -148,7 +148,7 @@ main {
 @media (max-width: 900px) {
   .site-header {
     max-width: 100vw;
-    border-radius: 0 0 28px 28px;
+    border-radius: 0 0 32px 32px;
     padding: 0 6px 0 6px;
   }
   .cards {
