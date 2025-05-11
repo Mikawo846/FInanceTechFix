@@ -2,33 +2,36 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Финансы</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=devicе-width, initial-scale=1.0">
+  <title>Финансовый портал</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <nav class="categories" id="categories">
-      <button class="cat">Главная</button>
-      <button class="cat">Инвестиции</button>
-      <button class="cat">Кредиты</button>
-      <button class="cat">Банки</button>
-      <button class="cat">Новости</button>
-      <button class="cat">Грамотность</button>
-      <button class="cat">Валюты</button>
-      <button class="cat">Криптовалюты</button>
-    </nav>
-    <div class="header-bottom">
-      <div class="header-center">
-        <input type="search" id="search" class="search" placeholder="Поиск по сайту...">
-      </div>
-      <div class="rates-bar">
-        <span class="rates-view active" id="fiatView"></span>
-        <span class="rates-view" id="cryptoView"></span>
-        <span class="rates-view" id="stocksView"></span>
-      </div>
+
+<header class="site-header">
+  <nav class="categories" id="categories">
+    <button class="cat active">Главная</button>
+    <button class="cat">Инвестиции</button>
+    <button class="cat">Кредиты</button>
+    <button class="cat">Банки</button>
+    <button class="cat">Новости</button>
+    <button class="cat">Грамотность</button>
+    <button class="cat">Валюты</button>
+    <button class="cat">Криптовалюты</button>
+  </nav>
+  <div class="header-bottom">
+    <div class="header-center">
+      <input type="search" id="search" class="search" placeholder="Поиск по сайту...">
     </div>
-  </header>
+    <div class="rates-bar">
+      <span class="rates-view active" id="fiatView"></span>
+      <span class="rates-view" id="cryptoView"></span>
+      <span class="rates-view" id="stocksView"></span>
+    </div>
+  </div>
+</header>
+
+<div id="error" class="error" style="display:none;"></div>
 
   <main>
     <div id="error" class="error" style="display:none"></div>
