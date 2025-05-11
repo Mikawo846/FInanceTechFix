@@ -1,106 +1,150 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Финансовый сайт</title>
-  <link rel="stylesheet" href="header.css">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Финансовые Советы</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="site-header" id="siteHeader">
-    <div class="header-bottom">
-      <div class="header-center">
-        <input type="text" id="search" class="search" placeholder="Поиск...">
-      </div>
-      <div class="rates-bar">
-        <span id="fiatView" class="rates-view active"></span>
-        <span id="cryptoView" class="rates-view"></span>
-        <span id="stocksView" class="rates-view"></span>
-      </div>
-    </div>
-    <nav class="categories" id="categories">
-      <button class="cat active">Все</button>
-      <button class="cat">Бюджет</button>
-      <button class="cat">Инвестиции</button>
-      <button class="cat">Кредиты</button>
-      <button class="cat">Безопасность</button>
-      <button class="cat">Пенсия</button>
-      <button class="cat">Недвижимость</button>
-    </nav>
-  </header>
-
-  <div id="error" class="error" style="display:none;"></div>
-
-  <main>
-    <div class="cards">
-      <div class="card">
-        <div class="card-body">
-          <div class="card-title">Изменения в налоговом законодательстве с 2024 года</div>
-          <div class="card-desc">Какие новые налоговые правила вступят в силу и как они повлияют на ваши финансы.</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
+  <div class="container">
+    <aside id="sidebar" class="sidebar open">
+      <nav>
+        <ul id="category-list">
+          <li class="active">Бюджет</li>
+          <li>Инвестиции</li>
+          <li>Кредиты</li>
+          <li>Безопасность</li>
+          <li>Пенсия</li>
+          <li>Недвижимость</li>
+        </ul>
+      </nav>
+    </aside>
+    <main>
+      <button id="menu-toggle" class="menu-toggle">&#9776;</button>
+      <section id="cards" class="cards">
+        <!-- Бюджет -->
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Как составить личный бюджет" />
           <div class="card-title">Как составить личный бюджет</div>
-          <div class="card-desc">Пошаговая инструкция по созданию бюджета для достижения финансовых целей.</div>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <div class="card-title">Стоит ли инвестировать в криптовалюту в 2025?</div>
-          <div class="card-desc">Аналитика, риски и перспективы рынка криптовалют для начинающих и опытных инвесторов.</div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Автоматизация финансов" />
+          <div class="card-title">Автоматизация финансов</div>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <div class="card-title">Как выбрать выгодный вклад в банке</div>
-          <div class="card-desc">Сравниваем предложения банков и рассказываем, на что обратить внимание при выборе вклада.</div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Учет расходов через приложения" />
+          <div class="card-title">Учет расходов через приложения</div>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <div class="card-title">Финансовая грамотность для всей семьи</div>
-          <div class="card-desc">Советы по обучению детей и подростков основам обращения с деньгами.</div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Финансовые привычки миллионеров" />
+          <div class="card-title">Финансовые привычки миллионеров</div>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <div class="card-title">Как рассчитать переплату по кредиту</div>
-          <div class="card-desc">Формулы, примеры и калькуляторы для расчета полной стоимости кредита.</div>
+        <!-- Инвестиции -->
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Инвестиции для новичков" />
+          <div class="card-title">Инвестиции для новичков</div>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <div class="card-title">Как защитить свои финансы от мошенников</div>
-          <div class="card-desc">Практические советы по кибербезопасности и защите банковских счетов.</div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="ETF фонды и их преимущества" />
+          <div class="card-title">ETF фонды и их преимущества</div>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <div class="card-title">Пенсионные накопления: как начать?</div>
-          <div class="card-desc">Пошаговое руководство по формированию пенсии и выбору инструментов.</div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Дивидендные акции как инструмент" />
+          <div class="card-title">Дивидендные акции как инструмент</div>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <div class="card-title">Инвестиции в недвижимость: плюсы и минусы</div>
-          <div class="card-desc">Что учитывать при покупке квартиры или коммерческой недвижимости.</div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Торговля на бирже за 10 шагов" />
+          <div class="card-title">Торговля на бирже за 10 шагов</div>
         </div>
-      </div>
-    </div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-title">Финансовый сайт</div>
-    <div class="footer-links">
-      <a href="#">О проекте</a>
-      <a href="#">Контакты</a>
-      <a href="#">Политика конфиденциальности</a>
-    </div>
-    <div class="footer-contact">info@example.com</div>
-    <div class="footer-copy">© 2025 Финансовый сайт</div>
-  </footer>
-  <script src="main.js"></script>
+        <!-- Кредиты -->
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Как взять кредит без ошибок" />
+          <div class="card-title">Как взять кредит без ошибок</div>
+        </div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Что такое рефинансирование" />
+          <div class="card-title">Что такое рефинансирование</div>
+        </div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Как не попасться на кредитные мошенничество" />
+          <div class="card-title">Как не попасться на кредитные мошенничество</div>
+        </div>
+        <!-- Безопасность -->
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Защита личных данных" />
+          <div class="card-title">Защита личных данных</div>
+        </div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Финансовая безопасность онлайн" />
+          <div class="card-title">Финансовая безопасность онлайн</div>
+        </div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Как защититься от финансового фишинга" />
+          <div class="card-title">Как защититься от финансового фишинга</div>
+        </div>
+        <!-- Пенсия -->
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Как правильно планировать пенсию" />
+          <div class="card-title">Как правильно планировать пенсию</div>
+        </div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Пенсионные накопления в 2025 году" />
+          <div class="card-title">Пенсионные накопления в 2025 году</div>
+        </div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Государственные программы пенсий" />
+          <div class="card-title">Государственные программы пенсий</div>
+        </div>
+        <!-- Недвижимость -->
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Советы по покупке недвижимости" />
+          <div class="card-title">Советы по покупке недвижимости</div>
+        </div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Рынок аренды квартир" />
+          <div class="card-title">Рынок аренды квартир</div>
+        </div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Как выгодно сдать квартиру" />
+          <div class="card-title">Как выгодно сдать квартиру</div>
+        </div>
+        <!-- Дополнительные примеры -->
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Семейный бюджет: секреты успеха" />
+          <div class="card-title">Семейный бюджет: секреты успеха</div>
+        </div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Инвестиции в золото: плюсы и минусы" />
+          <div class="card-title">Инвестиции в золото: плюсы и минусы</div>
+        </div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Как выбрать ипотеку" />
+          <div class="card-title">Как выбрать ипотеку</div>
+        </div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Безопасность мобильных платежей" />
+          <div class="card-title">Безопасность мобильных платежей</div>
+        </div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Пенсионные баллы: что это?" />
+          <div class="card-title">Пенсионные баллы: что это?</div>
+        </div>
+        <div class="card">
+          <img src="https://placehold.co/300x200" alt="Инвестиции в недвижимость" />
+          <div class="card-title">Инвестиции в недвижимость</div>
+        </div>
+      </section>
+      <section class="currency-section">
+        <h2>Курсы валют (обновляются в реальном времени)</h2>
+        <div id="currency-rates" class="currency-rates">
+          <div>USD/RUB: <span id="usd-rub">Загрузка...</span></div>
+          <div>EUR/RUB: <span id="eur-rub">Загрузка...</span></div>
+          <div>USD/EUR: <span id="usd-eur">Загрузка...</span></div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
