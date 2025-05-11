@@ -24,7 +24,7 @@ categories.addEventListener('click', (e) => {
   }
 });
 
-// КУРСЫ валют и крипты
+// Курсы валют и крипты
 let fiatRates = { USD: '75.2', EUR: '83.1' };
 let cryptoRates = { BTC: '$67,000', ETH: '$3,500' };
 let stockIndices = { SPX: '5,200.12', NASDAQ: '16,000.34' };
@@ -98,56 +98,50 @@ setInterval(() => {
   renderRates();
 }, 5000);
 
-// --- Улучшенный код для скрытия/показа шапки при скролле ---
+// --- Sticky Hide on Scroll для мобильной шапки ---
 const header = document.querySelector('.site-header');
+const mobileBreakpoint = 600;
 let lastScroll = window.pageYOffset;
-let scrollTimeout;
-const scrollHideThreshold = 100; // Минимальное расстояние скролла вниз для скрытия
-const scrollShowThreshold = 30;  // Минимальное расстояние скролла вверх для показа
-const scrollDelay = 250;         // Задержка перед скрытием/показом
+let lastDirection = null;
+let scrollPoint = window.pageYOffset;
+const scrollUpThreshold = 50;
+const scrollDownThreshold = 10;
 
-window.addEventListener('scroll', function() {
+function handleHeaderOnScroll() {
+  if (window.innerWidth > mobileBreakpoint) {
+    // Десктоп: всегда sticky, никаких классов
+    header.classList.remove('hideOnScroll', 'fixedToTop');
+    return;
+  }
   const currentScroll = window.pageYOffset;
-  const scrollDirection = currentScroll > lastScroll ? 'down' : 'up';
-  
-  // На самом верху страницы всегда показываем шапку
+  const direction = currentScroll > lastScroll ? 'down' : 'up';
+
+  // В самом верху страницы - всегда показываем шапку
   if (currentScroll <= 0) {
     header.classList.remove('hideOnScroll');
-    header.classList.remove('fixedToTop');
+    header.classList.add('fixedToTop');
     lastScroll = currentScroll;
+    lastDirection = null;
     return;
   }
-  
-  // Для десктопов - фиксируем шапку, но не скрываем
-  if (window.innerWidth > 600) {
-    header.classList.add('fixedToTop');
-    header.classList.remove('hideOnScroll');
-    lastScroll = currentScroll;
-    return;
-  }
-  
-  // Для мобильных устройств
-  clearTimeout(scrollTimeout);
-  
-  if (scrollDirection === 'down' && currentScroll > scrollHideThreshold) {
-    // Скролл вниз - скрываем шапку после задержки
-    scrollTimeout = setTimeout(() => {
-      header.classList.add('hideOnScroll');
-      header.classList.add('fixedToTop');
-    }, scrollDelay);
-  } 
-  else if (scrollDirection === 'up') {
-    // Скролл вверх - показываем шапку сразу
-    header.classList.remove('hideOnScroll');
-    header.classList.add('fixedToTop');
-  }
-  
-  lastScroll = currentScroll;
-});
 
-// При загрузке страницы проверяем позицию скролла
-window.addEventListener('load', function() {
-  if (window.pageYOffset > 0 && window.innerWidth <= 600) {
+  // При смене направления запоминаем точку
+  if (direction !== lastDirection) {
+    scrollPoint = currentScroll;
+    lastDirection = direction;
+  }
+
+  if (direction === 'down' && (currentScroll - scrollPoint) > scrollDownThreshold) {
+    header.classList.add('hideOnScroll');
+    header.classList.remove('fixedToTop');
+  } else if (direction === 'up' && (scrollPoint - currentScroll) > scrollUpThreshold) {
+    header.classList.remove('hideOnScroll');
     header.classList.add('fixedToTop');
   }
-});
+
+  lastScroll = currentScroll;
+}
+
+window.addEventListener('scroll', handleHeaderOnScroll);
+window.addEventListener('resize', handleHeaderOnScroll);
+handleHeaderOnScroll();
