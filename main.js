@@ -98,41 +98,56 @@ setInterval(() => {
   renderRates();
 }, 5000);
 
-// --- Скрытие/показ шапки на мобильных ---
+// --- Улучшенный код для скрытия/показа шапки при скролле ---
 const header = document.querySelector('.site-header');
 let lastScroll = window.pageYOffset;
-let lastDirection = null;
-let scrollPoint = window.pageYOffset;
-const mobileBreakpoint = 768;
-const scrollUpThreshold = 50;
-const scrollDownThreshold = 10;
+let scrollTimeout;
+const scrollHideThreshold = 100; // Минимальное расстояние скролла вниз для скрытия
+const scrollShowThreshold = 30;  // Минимальное расстояние скролла вверх для показа
+const scrollDelay = 250;         // Задержка перед скрытием/показом
 
-window.addEventListener('scroll', function () {
-  if (window.innerWidth > mobileBreakpoint) {
+window.addEventListener('scroll', function() {
+  const currentScroll = window.pageYOffset;
+  const scrollDirection = currentScroll > lastScroll ? 'down' : 'up';
+  
+  // На самом верху страницы всегда показываем шапку
+  if (currentScroll <= 0) {
     header.classList.remove('hideOnScroll');
+    header.classList.remove('fixedToTop');
+    lastScroll = currentScroll;
     return;
   }
-
-  const currentScroll = window.pageYOffset;
-  const direction = currentScroll > lastScroll ? 'down' : 'up';
-
-  if (direction !== lastDirection) {
-    scrollPoint = currentScroll;
-    lastDirection = direction;
-  }
-
-  // В самом верху страницы - всегда показываем шапку
-  if (currentScroll <= 0) {
+  
+  // Для десктопов - фиксируем шапку, но не скрываем
+  if (window.innerWidth > 600) {
+    header.classList.add('fixedToTop');
     header.classList.remove('hideOnScroll');
     lastScroll = currentScroll;
     return;
   }
-
-  if (direction === 'down' && (currentScroll - scrollPoint) > scrollDownThreshold) {
-    header.classList.add('hideOnScroll');
-  } else if (direction === 'up' && (scrollPoint - currentScroll) > scrollUpThreshold) {
+  
+  // Для мобильных устройств
+  clearTimeout(scrollTimeout);
+  
+  if (scrollDirection === 'down' && currentScroll > scrollHideThreshold) {
+    // Скролл вниз - скрываем шапку после задержки
+    scrollTimeout = setTimeout(() => {
+      header.classList.add('hideOnScroll');
+      header.classList.add('fixedToTop');
+    }, scrollDelay);
+  } 
+  else if (scrollDirection === 'up') {
+    // Скролл вверх - показываем шапку сразу
     header.classList.remove('hideOnScroll');
+    header.classList.add('fixedToTop');
   }
-
+  
   lastScroll = currentScroll;
+});
+
+// При загрузке страницы проверяем позицию скролла
+window.addEventListener('load', function() {
+  if (window.pageYOffset > 0 && window.innerWidth <= 600) {
+    header.classList.add('fixedToTop');
+  }
 });
