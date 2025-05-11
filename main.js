@@ -93,3 +93,53 @@ setInterval(() => {
   currentView = (currentView + 1) % 3;
   renderRates();
 }, 5000);
+(function() {
+  if (window.innerWidth > 600) return; // Только для мобильных
+
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+  let headerHeight = header.offsetHeight;
+  let fixed = false;
+
+  function onScroll() {
+    const currentY = window.scrollY;
+    const deltaY = currentY - lastScrollY;
+
+    // Пока шапка не ушла - не фиксируем
+    if (currentY < headerHeight) {
+      header.classList.remove('fixedToTop', 'hideOnScroll');
+      fixed = false;
+    } else {
+      // Длинный скролл вниз - скрыть
+      if (deltaY > 20) {
+        header.classList.remove('fixedToTop');
+        header.classList.add('hideOnScroll');
+        fixed = false;
+      }
+      // Длинный скролл вверх - показать фиксированную
+      else if (deltaY < -20) {
+        header.classList.add('fixedToTop');
+        header.classList.remove('hideOnScroll');
+        fixed = true;
+      }
+      // Короткий скролл - не фиксируем, шапка уезжает
+      else if (Math.abs(deltaY) < 20 && !fixed) {
+        header.classList.remove('fixedToTop', 'hideOnScroll');
+      }
+    }
+
+    lastScrollY = currentY;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  });
+})();
+
