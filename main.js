@@ -98,53 +98,45 @@ setInterval(() => {
   renderRates();
 }, 5000);
 
-// --- Мобильная шапка: появление/исчезновение при скролле ---
-(function() {
-  if (window.innerWidth > 600) return; // Только для мобильных
-
-  const header = document.querySelector('.site-header');
-  if (!header) return;
-
-  let lastScrollY = window.scrollY;
+  // Улучшенный код для скрытия/показа шапки
+  const header = document.querySelector('.header');
+  let lastScroll = 0;
   let ticking = false;
-  let headerHeight = header.offsetHeight;
-  let fixed = false;
-
-  function onScroll() {
-    const currentY = window.scrollY;
-    const deltaY = currentY - lastScrollY;
-
-    // Пока шапка не ушла - не фиксируем
-    if (currentY < headerHeight) {
-      header.classList.remove('fixedToTop', 'hideOnScroll');
-      fixed = false;
-    } else {
-      // Длинный скролл вниз - скрыть
-      if (deltaY > 20) {
-        header.classList.remove('fixedToTop');
-        header.classList.add('hideOnScroll');
-        fixed = false;
-      }
-      // Длинный скролл вверх - показать фиксированную
-      else if (deltaY < -20) {
-        header.classList.add('fixedToTop');
-        header.classList.remove('hideOnScroll');
-        fixed = true;
-      }
-      // Короткий скролл - не фиксируем, шапка уезжает
-      else if (Math.abs(deltaY) < 20 && !fixed) {
-        header.classList.remove('fixedToTop', 'hideOnScroll');
-      }
-    }
-
-    lastScrollY = currentY;
-    ticking = false;
-  }
-
+  const mobileBreakpoint = 768;
+  const scrollUpThreshold = 50; // Минимальное расстояние скролла вверх для показа
+  const scrollDownThreshold = 10; // Минимальное расстояние скролла вниз для скрытия
+  
   window.addEventListener('scroll', function() {
-    if (!ticking) {
-      window.requestAnimationFrame(onScroll);
+    if (!ticking && window.innerWidth <= mobileBreakpoint) {
+      window.requestAnimationFrame(function() {
+        const currentScroll = window.pageYOffset;
+        const scrollDirection = currentScroll > lastScroll ? 'down' : 'up';
+        const scrollDistance = Math.abs(currentScroll - lastScroll);
+        
+        // В самом верху страницы - показываем шапку
+        if (currentScroll <= 0) {
+          header.classList.remove('hide');
+          lastScroll = currentScroll;
+          ticking = false;
+          return;
+        }
+        
+        // Скролл вниз - скрываем шапку после преодоления порога
+        if (scrollDirection === 'down' && scrollDistance > scrollDownThreshold && !header.classList.contains('hide')) {
+          header.classList.add('hide');
+        } 
+        // Скролл вверх - показываем шапку после преодоления порога
+        else if (scrollDirection === 'up' && scrollDistance > scrollUpThreshold && header.classList.contains('hide')) {
+          header.classList.remove('hide');
+        }
+        
+        lastScroll = currentScroll;
+        ticking = false;
+      });
       ticking = true;
+    } else if (window.innerWidth > mobileBreakpoint) {
+      // На десктопах всегда показываем шапку
+      header.classList.remove('hide');
     }
   });
-})();
+});
