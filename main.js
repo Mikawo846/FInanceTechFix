@@ -98,7 +98,7 @@ setInterval(() => {
   renderRates();
 }, 5000);
 
-// --- Исправленный код для скрытия/показа шапки ---
+// --- Скрытие/показ шапки на мобильных ---
 const header = document.querySelector('.site-header');
 let lastScroll = window.pageYOffset;
 let lastDirection = null;
