@@ -30,7 +30,7 @@ html {
   transition: background 0.3s, top 0.3s;
 }
 
-/* --- Категории (десктоп) --- */
+/* --- Категории --- */
 .categories {
   display: flex;
   gap: 10px;
@@ -39,8 +39,10 @@ html {
   padding: 18px 0 0 0;
   width: 100%;
   box-sizing: border-box;
+  overflow-x: auto;
 }
 .categories::-webkit-scrollbar { display: none; }
+
 .cat {
   padding: 9px 18px;
   border: none;
@@ -138,6 +140,8 @@ main {
   margin: 32px 0 0 0;
   justify-items: center;
 }
+
+/* --- Карточки --- */
 .card {
   background: #fff;
   border-radius: 16px;
@@ -246,22 +250,38 @@ main {
     padding: 24px 4px 24px 4px;
   }
 }
+
 @media (max-width: 600px) {
   .site-header {
-    position: fixed;
+    position: static;
+    padding: 0 2vw;
+    border-radius: 0 0 18px 18px;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: top 0.3s, background 0.3s;
+    z-index: 100;
+  }
+  .site-header.fixedToTop {
+    position: fixed !important;
     top: 0;
     left: 0;
     right: 0;
     margin-top: 0;
     border-radius: 0 0 18px 18px;
-    background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    transition: top 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+    transition: top 0.3s, background 0.3s;
     z-index: 100;
   }
   .site-header.hideOnScroll {
+    position: fixed !important;
     top: -120px;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+    border-radius: 0 0 18px 18px;
+    transition: top 0.3s;
+    z-index: 100;
   }
   .categories {
     flex-wrap: wrap;
@@ -311,8 +331,5 @@ main {
   .cards {
     grid-template-columns: 1fr 1fr;
     gap: 8px;
-  }
-  main {
-    padding-top: 120px; /* чтобы контент не залезал под фиксированную шапку */
   }
 }
