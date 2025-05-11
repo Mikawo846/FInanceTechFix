@@ -1,0 +1,310 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #fff;
+  color: #222;
+  /* Убираем горизонтальный скролл на всей странице */
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+/* Шапка */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 18px;
+  margin-bottom: 0;
+  padding: 0 16px 0 16px;
+  background: rgba(255,255,255,0.7);
+  border-bottom-left-radius: 32px;
+  border-bottom-right-radius: 32px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.18);
+  transition: background 0.3s;
+}
+
+/* Категории - десктоп */
+.categories {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 0 0 0;
+  width: 100%;
+  box-sizing: border-box;
+  /* УБРАНО overflow-x: auto и скроллбары */
+}
+.categories::-webkit-scrollbar { display: none; }
+
+.cat {
+  padding: 9px 18px;
+  border: none;
+  background: none;
+  border-radius: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  color: #222;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+  outline: none;
+  white-space: nowrap;
+}
+.cat.active,
+.cat:hover,
+.cat:focus {
+  background: #fff7ed;
+  color: #ff9100;
+}
+
+/* Поиск и курсы */
+.header-bottom {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 18px 0 18px 0;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: center;
+}
+.header-center {
+  flex: 1 1 0;
+  display: flex;
+  justify-content: center;
+}
+.search {
+  width: 100%;
+  max-width: 520px;
+  padding: 13px 20px;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  font-size: 16px;
+  background: rgba(255,255,255,0.85);
+  transition: border 0.2s;
+  outline: none;
+  box-sizing: border-box;
+}
+.search:focus {
+  border-color: #f87171;
+}
+
+/* КУРСЫ БЕЗ ФОНА */
+.rates-bar {
+  min-width: 220px;
+  max-width: 340px;
+  width: 32vw;
+  height: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #444;
+  padding-left: 0;
+  justify-content: flex-end;
+  overflow: visible;
+}
+.rates-view {
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  opacity: 0;
+  transition: opacity 0.5s;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 0;
+  background: none;
+}
+.rates-view.active {
+  opacity: 1;
+  position: static;
+}
+
+/* Основной контент */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 8px 32px 8px;
+}
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  margin: 32px 0 0 0;
+  justify-items: center;
+}
+
+/* --- Медиазапросы --- */
+@media (max-width: 900px) {
+  .site-header {
+    max-width: 100vw;
+    border-radius: 0 0 28px 28px;
+    padding: 0 6px 0 6px;
+  }
+  .cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  main {
+    padding: 24px 4px 24px 4px;
+  }
+}
+
+/* --- Мобильная версия: категории без горизонтального скролла --- */
+@media (max-width: 600px) {
+  .site-header {
+    padding: 0 2vw;
+    border-radius: 0 0 18px 18px;
+  }
+  .categories {
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    width: 100%;
+    overflow-x: hidden !important; /* Принудительно убираем скролл */
+  }
+  .cat {
+    flex: 1 1 40%;
+    min-width: 48%;
+    max-width: 100%;
+    text-align: center;
+    font-size: 13px;
+    padding: 6px 0;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .header-bottom {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    padding: 12px 0 12px 0;
+  }
+  .header-center {
+    width: 100%;
+  }
+  .search {
+    font-size: 14px;
+    padding: 10px 12px;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .rates-bar {
+    font-size: 14px;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 2px;
+    padding-left: 0;
+    height: auto;
+    justify-content: flex-end;
+  }
+  .cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+}
+
+/* --- Остальной ваш CSS без изменений --- */
+.card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  transition: box-shadow 0.2s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
+  width: 100%;
+  max-width: 400px;
+}
+.card:hover {
+  box-shadow: 0 6px 20px rgba(220,38,38,0.08);
+}
+.card-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  background: #f3f3f3;
+}
+.card-body {
+  padding: 18px 16px 14px 16px;
+  flex: 1 1 auto;
+}
+.card-title {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+.card-desc {
+  font-size: 14px;
+  color: #666;
+}
+
+.error {
+  max-width: 900px;
+  margin: 0 auto 20px auto;
+  padding: 12px 20px;
+  background: #fef9c3;
+  color: #b45309;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.footer {
+  margin-top: 48px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #fff;
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+  padding: 32px 24px 24px 24px;
+  text-align: center;
+}
+.footer-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 14px;
+  font-size: 14px;
+  color: #666;
+}
+.footer-links a {
+  opacity: 0.8;
+  transition: opacity 0.15s;
+  text-decoration: none;
+  color: inherit;
+}
+.footer-links a:hover {
+  opacity: 1;
+}
+.footer-contact {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 6px;
+}
+.footer-copy {
+  font-size: 12px;
+  color: #bbb;
+}
