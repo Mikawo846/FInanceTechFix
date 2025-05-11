@@ -2,34 +2,31 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=devicе-width, initial-scale=1.0">
   <title>Финансовый портал</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<header class="site-header">
-  <nav class="categories" id="categories">
-    <button class="cat active">Главная</button>
-    <button class="cat">Инвестиции</button>
-    <button class="cat">Кредиты</button>
-    <button class="cat">Банки</button>
-    <button class="cat">Новости</button>
-    <button class="cat">Грамотность</button>
-    <button class="cat">Валюты</button>
-    <button class="cat">Криптовалюты</button>
-  </nav>
-  <div class="header-bottom">
-    <div class="header-center">
-      <input type="search" id="search" class="search" placeholder="Поиск по сайту...">
+  <header class="site-header">
+    <div class="header-bottom">
+      <div class="header-center">
+        <input id="search" class="search" type="text" placeholder="Поиск по статьям...">
+      </div>
+      <div class="rates-bar">
+        <span id="fiatView" class="rates-view active"></span>
+        <span id="cryptoView" class="rates-view"></span>
+        <span id="stocksView" class="rates-view"></span>
+      </div>
     </div>
-    <div class="rates-bar">
-      <span class="rates-view active" id="fiatView"></span>
-      <span class="rates-view" id="cryptoView"></span>
-      <span class="rates-view" id="stocksView"></span>
-    </div>
-  </div>
-</header>
+    <nav id="categories" class="categories">
+      <button class="cat active">Все</button>
+      <button class="cat">Инвестиции</button>
+      <button class="cat">Бюджет</button>
+      <button class="cat">Кредиты</button>
+      <button class="cat">Криптовалюта</button>
+      <button class="cat">Сбережения</button>
+    </nav>
+  </header>
 
 <div id="error" class="error" style="display:none;"></div>
 
