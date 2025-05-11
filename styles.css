@@ -30,6 +30,19 @@ html {
   transition: background 0.3s, top 0.3s;
 }
 
+.header.hide {
+    transform: translateY(-100%);
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+
 /* --- Категории (десктоп) --- */
 .categories {
   display: flex;
