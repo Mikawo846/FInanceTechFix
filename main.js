@@ -44,6 +44,7 @@ function renderRates() {
   cryptoView.className = 'rates-view' + (currentView === 1 ? ' active' : '');
   stocksView.className = 'rates-view' + (currentView === 2 ? ' active' : '');
 }
+
 function renderError() {
   if (errorMsg) {
     errorDiv.textContent = '⚠️ ' + errorMsg;
@@ -52,6 +53,7 @@ function renderError() {
     errorDiv.style.display = 'none';
   }
 }
+
 renderRates();
 renderError();
 
@@ -71,6 +73,7 @@ async function fetchFiatRates() {
   renderRates();
   renderError();
 }
+
 async function fetchCryptoRates() {
   try {
     const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum&vs_currencies=usd');
@@ -86,6 +89,7 @@ async function fetchCryptoRates() {
   renderRates();
   renderError();
 }
+
 fetchFiatRates();
 fetchCryptoRates();
 
@@ -93,6 +97,8 @@ setInterval(() => {
   currentView = (currentView + 1) % 3;
   renderRates();
 }, 5000);
+
+// --- Мобильная шапка: появление/исчезновение при скролле ---
 (function() {
   if (window.innerWidth > 600) return; // Только для мобильных
 
@@ -142,4 +148,3 @@ setInterval(() => {
     }
   });
 })();
-
